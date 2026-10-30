@@ -177,6 +177,33 @@
       "url": "",
       "x": 0.43042,
       "y": 0.48549
+    },
+    {
+      "id": "mmvugqsvfo62",
+      "name": "San Terezija",
+      "type": "town",
+      "desc": "También conocida como la \"Villa de las Casas Triangulares\", donde cosechan la carne de las rutas que crian como barometz en sótanos especializados. Lugar de algolas, donde hombres y mujeres de otras tierras por igual se pierden para nunca ser vistos de nuevo.",
+      "url": "",
+      "x": 0.3226,
+      "y": 0.13634
+    },
+    {
+      "id": "mmvugtqcf72h",
+      "name": "Magstya",
+      "type": "city",
+      "desc": "Una ciudad que descansa sobre un claro entre los densos bosques de Hárszeg; una loma que hace que cada hilera de casas y edificios parezca un piso más de la ciudad, con El Claustro en su cúspide, cual mota castral. La ciudad es resguardada por murallas y empalizadas de madera, y vigilada por altas atalayas, cuyos hombres, dicen, pueden ver incluso a través de la bruma. A pesar de parecer estar en el medio de la nada, la ciudad alberga algunas de las mentes más brillantes del Valle, y en ella se educan a futuros alquimistas, teólogos e importantes terratenientes lazarinos. Muchos creen que, por su irregular organización, Magstya aparenta más un asentamiento improvisado que fue orgánicamente creciendo por el tiempo. Sin embargo, cartógrafos que han estudiado la ciudad y trazado sus senderos en un mapa aseveran que, si hubiese forma de ver la ciudad desde los cielos, lo que se vería sería la representación de un sigilo antiguo, propio de los viejos linajes nobles del Condado.",
+      "url": "https://carpg.foroactivo.com/t223-magstya#1146",
+      "x": 0.40811,
+      "y": 0.35609
+    },
+    {
+      "id": "mmvugwqus67s",
+      "name": "Claustro Negro",
+      "type": "fortress",
+      "desc": "Fortaleza de piedra acobijada por los bosques del condado, donde se entrena a los hombres y mujeres que forman las líneas de los Justicieros de Vallás del Valle.",
+      "url": "",
+      "x": 0.4825,
+      "y": 0.35296
     }
   ],
   "regions": [
@@ -3166,7 +3193,7 @@
       "name": "Hárszeg",
       "holder": "Bálint Hajnal",
       "desc": "Hárszeg es una tierra de secretos ocultos bajo la bruma, las lluvias y los árboles. Sus pueblos cargan una historia tan antigua como el rocío mismo, usualmente al lado de ríos murmurantes, sobre solitarias colinas y junto a bosques antiguos. La tierra vive bajo una cerrazón perpetua, y su grisáceo cielo es orlado por nubes oscuras. Sus noches son las más lóbregas del Valle, pues usualmente los frágiles haces de la luna son incapaces de penetrar a través de dichas nubes. Los días que la luna logra mostrarse entre los astros y demás errantes, es razón para festejar en muchas aldeas.",
-      "url": "",
+      "url": "https://carpg.foroactivo.com/f38-bosques-de-harszeg",
       "parent": "",
       "color": "#7a8f2e",
       "points": [
