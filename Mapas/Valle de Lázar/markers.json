@@ -159,6 +159,24 @@
       "url": "",
       "x": 0.22647,
       "y": 0.66241
+    },
+    {
+      "id": "mmvufeuvfzju",
+      "name": "Casa señorial de los Kővári",
+      "type": "manor",
+      "desc": "Tierras bajo el poder de los Árvalya pero administradas por los Kővári junto al Hídveszett Kövek. Los Kővári también están encargados de recolectar los peajes por el tránsito en el puente y su protección.",
+      "url": "",
+      "x": 0.45834,
+      "y": 0.42752
+    },
+    {
+      "id": "mmvufvz0d8yh",
+      "name": "Révhalom",
+      "type": "fortress",
+      "desc": "Ubicada en la intersección entre Hollókút, Várdany y Fálsit, a orillas del Río Murmurante, con una atalaya sobre un promontorio aledaño. Habitada por los Sárvári, quienes están encargados de la protección de los bordes australes de Hollókút por mandatos de otrora.",
+      "url": "",
+      "x": 0.43042,
+      "y": 0.48549
     }
   ],
   "regions": [
@@ -3677,7 +3695,7 @@
     {
       "id": "rmvr1bnpx2gl",
       "layer": "barony",
-      "name": "Vicaría de Várdany",
+      "name": "Várdany",
       "holder": "Dénes de Árvalya",
       "desc": "Afectado por una vieja maldición familiar, las siembras en Várdany no crecen a pesar de su vasta extensión. Las plantas se han negado a crecer en el suelo, hasta recientemente, cuando Vézséla Szívmarók rompió parte de la aflicción sobre la tierra.",
       "url": "",
@@ -5275,8 +5293,8 @@
       "size": 25,
       "rot": 0,
       "spacing": 30,
-      "x": 0.48079,
-      "y": 0.4732
+      "x": 0.48444,
+      "y": 0.47001
     },
     {
       "id": "tmvrfsea8ppv",
@@ -6023,6 +6041,102 @@
       "powers": "",
       "rumors": "",
       "notes": "Casado a los 18 años."
+    },
+    {
+      "id": "pmvufjr0z0du",
+      "name": "Tibor de Kővári",
+      "title": "",
+      "house": "Kővári",
+      "birth": {
+        "y": 441,
+        "m": 9,
+        "d": 25
+      },
+      "dead": false,
+      "death": null,
+      "liege": "pmvr18jo07e9",
+      "father": "",
+      "mother": "",
+      "spouse": "pmvufoouytql",
+      "heir": "",
+      "residence": "mmvufeuvfzju",
+      "burial": "",
+      "portrait": "",
+      "powers": "",
+      "rumors": "",
+      "notes": "Casado a los 17 años."
+    },
+    {
+      "id": "pmvufoouytql",
+      "name": "Julianna de Turány",
+      "title": "",
+      "house": "Turány",
+      "birth": {
+        "y": 443,
+        "m": 4,
+        "d": 29
+      },
+      "dead": false,
+      "death": null,
+      "liege": "",
+      "father": "",
+      "mother": "",
+      "spouse": "pmvufjr0z0du",
+      "heir": "",
+      "residence": "mmvufeuvfzju",
+      "burial": "",
+      "portrait": "",
+      "powers": "",
+      "rumors": "",
+      "notes": ""
+    },
+    {
+      "id": "pmvug26emeln",
+      "name": "Piroska de Sárvári",
+      "title": "Alcaide de Révhalom",
+      "house": "Sárvári",
+      "birth": {
+        "y": 453,
+        "m": 2,
+        "d": 21
+      },
+      "dead": false,
+      "death": null,
+      "liege": "",
+      "father": "",
+      "mother": "",
+      "spouse": "pmvug5xton1z",
+      "heir": "",
+      "residence": "mmvufvz0d8yh",
+      "burial": "",
+      "portrait": "",
+      "powers": "",
+      "rumors": "",
+      "notes": ""
+    },
+    {
+      "id": "pmvug5xton1z",
+      "name": "Elemér de Borzhalom",
+      "title": "Consorte de Sárvári",
+      "house": "Borzhalom",
+      "birth": {
+        "y": 455,
+        "m": 1,
+        "d": 1
+      },
+      "dead": false,
+      "death": null,
+      "liege": "",
+      "father": "",
+      "mother": "",
+      "spouse": "pmvug26emeln",
+      "heir": "",
+      "residence": "mmvufvz0d8yh",
+      "burial": "",
+      "portrait": "",
+      "powers": "",
+      "rumors": "",
+      "notes": ""
     }
   ],
   "houses": [
@@ -6074,11 +6188,11 @@
       "id": "hmvrgcldq68f",
       "name": "Sárvári",
       "motto": "",
-      "seat": "",
+      "seat": "mmvufvz0d8yh",
       "noSeat": false,
       "parent": "",
-      "head": "",
-      "desc": "",
+      "head": "pmvug26emeln",
+      "desc": "Una vieja familia noble con poder sobre algunas parcelas de tierra en el sur de la vicaría Hollókút. Por su estrecha relación con la dinastía gobernante de la vicaría, controlan la mota castral de Révhalom y están encargados de la vigilancia y defensa de los bordes australes. Sus hombres y mujeres son administradores y guerreros.",
       "url": ""
     },
     {
@@ -6118,11 +6232,11 @@
       "id": "hmvriqxjyfw2",
       "name": "Kővári",
       "motto": "",
-      "seat": "",
+      "seat": "mmvufeuvfzju",
       "noSeat": false,
       "parent": "",
-      "head": "",
-      "desc": "",
+      "head": "pmvufjr0z0du",
+      "desc": "Una vieja casa noble que perdió sus títulos sobre la vicaría de Fálsit en antaño. Posteriormente, a través de alianzas con los Árvalya y por sus guerreros fuertes se les concedieron poderes administrativos y judiciales sobre el norte de la vicaría de Várdany.",
       "url": ""
     },
     {
@@ -6185,13 +6299,15 @@
       "name": "Kemény",
       "motto": "",
       "seat": "",
+      "noSeat": true,
+      "parent": "",
       "head": "",
       "desc": "",
-      "url": "",
-      "noSeat": true
+      "url": ""
     }
   ],
   "events": [],
+  "rumors": [],
   "routes": [
     {
       "id": "cmvr50iyqs8w",
