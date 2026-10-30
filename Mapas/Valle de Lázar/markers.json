@@ -5640,8 +5640,12 @@
         "m": 10,
         "d": 16
       },
-      "dead": false,
-      "death": null,
+      "dead": true,
+      "death": {
+        "y": 488,
+        "m": 4,
+        "d": 1
+      },
       "liege": "",
       "father": "",
       "mother": "",
