@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Asignador de Atributos</title>
+
+  <!-- 🎨 GOOGLE FONTS -->
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700;800&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+
+  <style>
+    /* Base Theme & Layout */
+    body {
+      background-color: #140D05;
+      color: #B8B5A1;
+      font-family: 'EB Garamond', serif;
+      font-size: 18px;
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 20px;
+      border: 1px solid #B8B5A1;
+      border-radius: 10px;
+      box-shadow: 0 0 18px #00000066;
+    }
+
+    h2 {
+      font-family: 'UnifrakturMaguntia', serif;
+      font-size: 28px;
+      text-align: center;
+      font-weight: normal; /* 👈 Remove bold */
+      color: #B8B5A1;
+      margin-bottom: 1.5em;
+      line-height: 1.2;
+    }
+
+    label {
+      display: block;
+      margin-top: 12px;
+      font-weight: normal;
+    }
+
+    select {
+      width: 100%;
+      font-size: 16px;
+      font-family: 'EB Garamond', serif;
+      padding: 6px;
+      background-color: #140D05;
+      color: #B8B5A1;
+      border: 1px solid #B8B5A1;
+      border-radius: 4px;
+      margin-top: 4px;
+    }
+
+    .stat {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #140D05;
+      padding: 6px 8px;
+      margin-top: 6px;
+      border-radius: 5px;
+    }
+
+    .stat label {
+      width: 100px;
+      text-align: right;
+      margin: 0;
+    }
+
+    .stat input {
+      width: 60px;
+      text-align: center;
+      font-size: 16px;
+      background-color: #140D05;
+      color: #B8B5A1;
+      border: 1px solid #B8B5A1;
+      border-radius: 3px;
+    }
+
+    .bonus, .modifier {
+      width: 80px;
+      text-align: center;
+      font-family: 'EB Garamond', serif;
+      color: #B8B5A1;
+    }
+
+    .total, .derived {
+      margin-top: 20px;
+      padding: 10px;
+      border: 1px solid #B8B5A1;
+      border-radius: 5px;
+      background-color: #140D05;
+      text-align: center;
+      font-weight: normal;
+      color: #B8B5A1;
+    }
+
+    .warning {
+      color: #e85959;
+      font-weight: bold;
+      text-align: center;
+      padding-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Crónicas de la Aflicción:<br>Asignación de Puntos</h2>
+
+  <label for="background">Selecciona un trasfondo:</label>
+  <select id="background">
+    <option value="">— Ninguno —</option>
+    <option value="Alquimista">Alquimista</option>
+    <option value="Artesano">Artesano</option>
+    <option value="Asesino a sueldo">Asesino a sueldo</option>
+    <option value="Campesino">Campesino</option>
+    <option value="Cazador furtivo">Cazador furtivo</option>
+    <option value="Citadino">Citadino</option>
+    <option value="Comerciante">Comerciante</option>
+    <option value="Despojador">Despojador</option>
+    <option value="Esclavista">Esclavista</option>
+    <option value="Escolar">Escolar</option>
+    <option value="Ex-esclavo">Ex-esclavo</option>
+    <option value="Ex-noble">Ex-noble</option>
+    <option value="Gladiador">Gladiador</option>
+    <option value="Justiciero">Justiciero</option>
+    <option value="Ladrón">Ladrón</option>
+    <option value="Mercenario">Mercenario</option>
+    <option value="Sacerdote del Nuevo Templo">Sacerdote del Nuevo Templo</option>
+    <option value="Sacerdote del Rey Dios">Sacerdote del Rey Dios</option>
+    <option value="Veterano">Veterano</option>
+  </select>
+
+  <label for="culture">Selecciona una cultura:</label>
+  <select id="culture">
+    <option value="">— Ninguna —</option>
+    <option value="Hárszegi">Hárszegi</option>
+    <option value="Kárdovés">Kárdovés</option>
+    <option value="Lángvari">Lángvari</option>
+    <option value="Málvéri">Málvéri</option>
+    <option value="Valavéni">Valavéni</option>
+    <option value="Varáki">Varáki</option>
+  </select>
+
+  <div id="stats"></div>
+
+  <div class="total">
+    Total de puntos usados: <span id="total">0</span> / 32
+  </div>
+
+  <div class="warning" id="warning" style="display: none;">
+    ⚠️ Has excedido el límite de 32 puntos.
+  </div>
+
+  <div class="derived" id="derived">
+    Iniciativa (INI): +0<br>
+    Puntos de Golpe (PDG): 12<br>
+    Celeridad (CEL): 1<br>
+    Cordura (COR): 4
+  </div>
+
+  <div style="text-align: center; margin-top: 30px; font-size: 16px;">
+    <a href="https://carpg.foroactivo.com" target="_blank" style="color: #fceac3; text-decoration: underline; font-family: 'EB Garamond', sans-serif;">
+      ⟶ Regresar al foro de Crónicas de la Aflicción
+    </a>
+  </div>
+
+  <script>
+    const baseStats = ["Apariencia", "Intelecto", "Espíritu", "Gracia", "Vigor", "Vitalidad"];
+
+    const backgroundBonuses = {
+      "Alquimista": { Intelecto: 6, Gracia: 2 },
+      "Artesano": { Vigor: 3, Intelecto: 3, Vitalidad: 2 },
+      "Asesino a sueldo": { Gracia: 6, Vigor: 2 },
+      "Campesino": { Vigor: 3, Vitalidad: 5 },
+      "Cazador furtivo": { Gracia: 8 },
+      "Citadino": { Gracia: 2, Intelecto: 2, Apariencia: 4 },
+      "Comerciante": { Intelecto: 4, Apariencia: 4 },
+      "Despojador": { Gracia: 4, Vigor: 4 },
+      "Esclavista": { Apariencia: 2, Intelecto: 6 },
+      "Escolar": { Intelecto: 8 },
+      "Ex-esclavo": { Vigor: 5, Vitalidad: 5 },
+      "Ex-noble": { Apariencia: 6, Intelecto: 2 },
+      "Gladiador": { Vigor: 6, Gracia: 6 },
+      "Justiciero": { Vigor: 4, Intelecto: 4 },
+      "Ladrón": { Gracia: 6, Apariencia: 2 },
+      "Mercenario": { Vigor: 6, Gracia: 2 },
+      "Sacerdote del Nuevo Templo": { Intelecto: 2, Espíritu: 6 },
+      "Sacerdote del Rey Dios": { Intelecto: 2, Espíritu: 6 },
+      "Veterano": { Vigor: 6, Vitalidad: 2 }
+    };
+
+    const cultureBonuses = {
+      "Hárszegi": { Intelecto: 2, Espíritu: 2, Vigor: -2 },
+      "Kárdovés": { Gracia: 2, Vigor: 2, Intelecto: -2 },
+      "Lángvari": { Espíritu: 2, Vitalidad: 1, Intelecto: 1, Apariencia: -2 },
+      "Málvéri": { Vitalidad: 2, Vigor: 2, Intelecto: -2 },
+      "Valavéni": { Vigor: 2, Gracia: 2, Espíritu: -2 },
+      "Varáki": { Espíritu: 2, Apariencia: 2, Vitalidad: -2 }
+    };
+
+    function getModifier(score) {
+      if (score <= 1) return -5;
+      if (score <= 3) return -4;
+      if (score <= 5) return -3;
+      if (score <= 7) return -2;
+      if (score <= 9) return -1;
+      if (score <= 11) return 0;
+      if (score <= 13) return 1;
+      if (score <= 15) return 2;
+      if (score <= 17) return 3;
+      if (score <= 19) return 4;
+      if (score <= 21) return 5;
+      if (score <= 23) return 6;
+      if (score <= 25) return 7;
+      if (score <= 27) return 8;
+      if (score <= 29) return 9;
+      if (score === 30) return 10;
+      if (score >= 30) return 10;  // ✅ catch 30 and above
+    }
+
+    function getCeleridad(totalGracia) {
+      if (totalGracia <= 5) return 1;
+      if (totalGracia <= 10) return 2;
+      if (totalGracia <= 15) return 3;
+      if (totalGracia <= 20) return 4;
+      if (totalGracia <= 25) return 5;
+      return 6;
+    }
+
+    function updateTotal() {
+      const bg = document.getElementById("background").value;
+      const culture = document.getElementById("culture").value;
+
+      const bgBonuses = backgroundBonuses[bg] || {};
+      const cultureBonusesSet = cultureBonuses[culture] || {};
+
+      let total = 0;
+      let values = {};
+
+      baseStats.forEach(stat => {
+        const input = document.getElementById(stat);
+        if (!input) return;
+
+        const base = parseInt(input.value) || 1;
+        const bgBonus = bgBonuses[stat] || 0;
+        const cultureBonus = cultureBonusesSet[stat] || 0;
+        const totalStat = base + bgBonus + cultureBonus;
+
+        const spent = Math.max(0, base - 1);
+        total += spent;
+
+        const formatBonus = (num) => (num >= 0 ? `+${num}` : `${num}`);
+        document.getElementById(`${stat}-bonus`).innerText = `(${formatBonus(bgBonus)}, ${formatBonus(cultureBonus)})`;
+        document.getElementById(`${stat}-mod`).innerText = "Mod: " + (getModifier(totalStat) >= 0 ? "+" : "") + getModifier(totalStat);
+
+        values[stat] = totalStat;
+      });
+
+const remainingPoints = 32 - total;
+
+baseStats.forEach(stat => {
+  const input = document.getElementById(stat);
+  if (!input) return;
+
+  const current = parseInt(input.value) || 1;
+
+  // Allow increment only if remaining > 0 or value not increasing
+  input.max = current + remainingPoints;
+});
+
+      document.getElementById("total").innerText = total;
+      document.getElementById("warning").style.display = total > 32 ? "block" : "none";
+
+      // Derived stats
+      const ini = getModifier(values["Gracia"]);
+      const pdg = Math.max(1, 12 + getModifier(values["Vitalidad"]));
+      const cel = getCeleridad(values["Gracia"]);
+      const cor = 2 * (values["Intelecto"] + values["Espíritu"]);
+
+      document.getElementById("derived").innerHTML = `
+        Iniciativa (INI): ${(ini >= 0 ? "+" : "") + ini}<br>
+        Puntos de Golpe (PDG): ${pdg}<br>
+        Celeridad (CEL): ${cel}<br>
+        Cordura (COR): ${cor}
+      `;
+    }
+
+    function createInputs() {
+      const container = document.getElementById("stats");
+      baseStats.forEach(stat => {
+        const div = document.createElement("div");
+        div.className = "stat";
+
+        const label = document.createElement("label");
+        label.textContent = `${stat}:`;
+        label.setAttribute("for", stat);
+
+        const input = document.createElement("input");
+        input.type = "number";
+        input.min = "1";
+        input.value = "1";
+        input.id = stat;
+        input.onchange = updateTotal;
+
+        const bonus = document.createElement("span");
+        bonus.className = "bonus";
+        bonus.id = `${stat}-bonus`;
+        bonus.innerText = "(+0, +0)";
+
+        const modifier = document.createElement("span");
+        modifier.className = "modifier";
+        modifier.id = `${stat}-mod`;
+        modifier.textContent = "Mod: -5";
+
+        div.appendChild(label);
+        div.appendChild(input);
+        div.appendChild(bonus);
+        div.appendChild(modifier);
+        container.appendChild(div);
+      });
+    }
+
+    window.onload = function () {
+      createInputs();
+      document.getElementById("background").onchange = updateTotal;
+      document.getElementById("culture").onchange = updateTotal;
+      updateTotal();
+    };
+  </script>
+
+</body>
+</html>
